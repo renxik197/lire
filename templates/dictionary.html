@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="fw-bold mb-4">{{ t.dictionary }}</h2>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-6">
+        <input type="text" name="q" class="form-control" placeholder="{{ t.search_placeholder }}" value="{{ query }}">
+    </div>
+    <div class="col-md-4">
+        <select name="category" class="form-select">
+            <option value="all">{{ t.all_categories }}</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-lire w-100">{{ t.search_btn }}</button>
+    </div>
+</form>
+
+{% if idioms %}
+<p class="text-muted mb-3">{{ t.found }}: {{ idioms|length }}</p>
+<div class="row g-3">
+    {% for item in idioms %}
+    <div class="col-md-6">
+        <div class="card-lire p-3 h-100">
+            <a class="idiom-link" href="{{ url_for('idiom_page', idiom_id=item.id) }}">{{ item.phrase }}</a>
+            <p class="mb-2 mt-1" style="color: var(--lire-muted); font-size: 0.95rem;">{{ item.figurative_ru }}</p>
+            <span class="badge-lire">{{ item.category }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card-lire p-4 text-center text-muted">{{ t.no_results }}</div>
+{% endif %}
+{% endblock %}

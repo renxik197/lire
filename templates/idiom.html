@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card-lire p-4 p-md-5">
+    <h2 class="fw-bold mb-2">{{ idiom.phrase }}</h2>
+    <span class="badge-lire mb-3 d-inline-block">{{ idiom.category }}</span>
+
+    <hr class="my-4">
+
+    <div class="mb-3">
+        <div class="text-muted small fw-semibold mb-1">{{ t.literal }}</div>
+        <div>{{ idiom.literal_ru }}</div>
+    </div>
+    <div class="mb-3">
+        <div class="text-muted small fw-semibold mb-1">{{ t.figurative }}</div>
+        <div>{{ idiom.figurative_ru }}</div>
+    </div>
+    <div class="mb-3">
+        <div class="text-muted small fw-semibold mb-1">{{ t.origin }}</div>
+        <div>{{ idiom.origin_ru }}</div>
+    </div>
+    <div class="mb-3">
+        <div class="text-muted small fw-semibold mb-1">{{ t.example }}</div>
+        {% if examples %}
+            <ul class="mb-0 ps-3">
+            {% for ex in examples %}
+                <li class="mb-1"><em>{{ ex }}</em></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <em>{{ idiom.examples_en }}</em>
+        {% endif %}
+    </div>
+    <div class="mb-4">
+        <div class="text-muted small fw-semibold mb-1">{{ t.synonyms }}</div>
+        <div>{{ idiom.synonyms }}</div>
+    </div>
+
+    <a href="/dictionary" class="btn btn-outline-lire">← {{ t.back }}</a>
+</div>
+{% endblock %}

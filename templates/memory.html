@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="fw-bold mb-4">{{ t.memory_title }}</h2>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <a href="/memory/train" class="text-decoration-none">
+            <div class="card-lire p-4 h-100 text-center">
+                <div class="module-icon mx-auto"><i class="bi bi-ui-checks-grid"></i></div>
+                <h5 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.train }}</h5>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.train_desc }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="/memory/truefalse" class="text-decoration-none">
+            <div class="card-lire p-4 h-100 text-center">
+                <div class="module-icon mx-auto"><i class="bi bi-check2-circle"></i></div>
+                <h5 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.truefalse }}</h5>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.truefalse_desc }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <a href="/random" class="text-decoration-none">
+            <div class="card-lire p-4 h-100 text-center">
+                <div class="module-icon mx-auto"><i class="bi bi-shuffle"></i></div>
+                <h5 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.random_card }}</h5>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.random_card_desc }}</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

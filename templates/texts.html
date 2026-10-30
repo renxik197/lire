@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="fw-bold mb-2">
+    {% if lang == 'ru' %}Советы по изучению идиом{% else %}Tips for learning idioms{% endif %}
+</h2>
+
+<p class="text-muted mb-4">
+    {% if lang == 'ru' %}
+        Короткие рекомендации, которые помогут запоминать устойчивые выражения быстрее.
+    {% else %}
+        Short tips to help you remember fixed expressions faster.
+    {% endif %}
+</p>
+
+<div class="row g-3">
+    {% for tip in tips %}
+    <div class="col-md-6">
+        <div class="card-lire p-4 h-100">
+            <div class="fw-semibold mb-2">
+                {{ loop.index }}.
+                {% if lang == 'ru' %}{{ tip.title_ru }}{% else %}{{ tip.title_en }}{% endif %}
+            </div>
+            <div class="text-muted">
+                {% if lang == 'ru' %}{{ tip.text_ru }}{% else %}{{ tip.text_en }}{% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

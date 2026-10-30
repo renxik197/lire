@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="hero-title mb-2">{{ t.site_title }}</h1>
+    <p class="text-uppercase fw-semibold mb-3" style="color: var(--lire-primary); letter-spacing: 1px; font-size: 0.95rem;">
+        {{ t.tagline }}
+    </p>
+    <p class="hero-sub mx-auto mb-5" style="max-width: 560px;">{{ t.welcome }}</p>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6">
+        <a href="/dictionary" class="text-decoration-none">
+            <div class="card-lire p-4 h-100">
+                <div class="module-icon"><i class="bi bi-book"></i></div>
+                <h4 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.module_dict_title }}</h4>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.module_dict_desc }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="/translator" class="text-decoration-none">
+            <div class="card-lire p-4 h-100">
+                <div class="module-icon"><i class="bi bi-translate"></i></div>
+                <h4 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.module_trans_title }}</h4>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.module_trans_desc }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="/memory" class="text-decoration-none">
+            <div class="card-lire p-4 h-100">
+                <div class="module-icon"><i class="bi bi-collection"></i></div>
+                <h4 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.module_cards_title }}</h4>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.module_cards_desc }}</p>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="/texts" class="text-decoration-none">
+            <div class="card-lire p-4 h-100">
+                <div class="module-icon"><i class="bi bi-file-text"></i></div>
+                <h4 class="fw-bold mb-2" style="color: var(--lire-text);">{{ t.module_texts_title }}</h4>
+                <p class="mb-0" style="color: var(--lire-muted);">{{ t.module_texts_desc }}</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

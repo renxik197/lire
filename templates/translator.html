@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .lang-box {
+        background: #dbe4ee;
+        border: 1px solid #b8c5d4;
+        border-radius: 6px;
+        padding: 0.5rem 1.4rem;
+        font-weight: 600;
+        min-width: 140px;
+        text-align: center;
+        color: #1e293b;
+    }
+    .arrow {
+        font-size: 1.6rem;
+        color: #64748b;
+        margin: 0 0.8rem;
+    }
+    .box-input, .box-output, .box-details {
+        background: #e8eef5;
+        border: 1px solid #c5d0dc;
+        border-radius: 8px;
+    }
+    .box-input textarea {
+        background: transparent;
+        border: none;
+        resize: vertical;
+        min-height: 200px;
+        padding: 1.1rem 1.25rem;
+        font-size: 1.05rem;
+        width: 100%;
+        outline: none;
+    }
+    .box-input textarea::placeholder {
+        color: #64748b;
+    }
+    .box-output {
+        min-height: 200px;
+        padding: 1.1rem 1.25rem;
+    }
+    .box-details {
+        padding: 1rem 1.25rem;
+        margin-top: 1rem;
+        line-height: 1.7;
+        color: #334155;
+        font-size: 0.95rem;
+    }
+    .btn-translate {
+        background: #e8eef5;
+        border: 1px solid #c5d0dc;
+        border-radius: 6px;
+        padding: 0.45rem 1.4rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-top: 0.9rem;
+    }
+    .btn-translate:hover {
+        background: #d5e0ec;
+        border-color: #a8b8c9;
+    }
+</style>
+
+<form method="post">
+    <!-- Языки -->
+    <div class="d-flex align-items-center justify-content-center mb-4 flex-wrap">
+        <div class="lang-box">
+            {% if lang == 'ru' %}Английский{% else %}English{% endif %}
+        </div>
+        <div class="arrow">→</div>
+        <div class="lang-box">
+            {% if lang == 'ru' %}Русский{% else %}Russian{% endif %}
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Левая колонка -->
+        <div class="col-lg-6">
+            <div class="box-input">
+                <textarea name="text"
+                    placeholder="{% if lang == 'ru' %}Введите идиому или фразу...{% else %}Enter an idiom or phrase...{% endif %}">{{ original }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-translate">
+                {% if lang == 'ru' %}Перевести{% else %}Translate{% endif %}
+            </button>
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="col-lg-6">
+            <div class="box-output">
+                <div class="text-muted small fw-semibold mb-2">
+                    {% if lang == 'ru' %}Перевод{% else %}Translation{% endif %}
+                </div>
+
+                {% if result %}
+                    <div class="fs-5 fw-semibold">{{ result.figurative_ru }}</div>
+                {% elif free_translation %}
+                    <div class="fs-5 fw-semibold">{{ free_translation }}</div>
+                {% elif error %}
+                    <div class="text-warning">{{ error }}</div>
+                {% else %}
+                    <div class="text-muted">—</div>
+                {% endif %}
+            </div>
+
+            <div class="box-details">
+                {% if result %}
+                    <div>
+                        <strong>{% if lang == 'ru' %}Категория{% else %}Category{% endif %}:</strong>
+                        {{ result.category }}
+                    </div>
+                    <div>
+                        <strong>{% if lang == 'ru' %}Дословный перевод{% else %}Literal translation{% endif %}:</strong>
+                        {{ result.literal_ru }}
+                    </div>
+                    <div>
+                        <strong>{% if lang == 'ru' %}Переносный перевод{% else %}Figurative translation{% endif %}:</strong>
+                        {{ result.figurative_ru }}
+                    </div>
+                    <div>
+                        <strong>{% if lang == 'ru' %}Происхождение{% else %}Origin{% endif %}:</strong>
+                        {{ result.origin_ru }}
+                    </div>
+                    <div>
+                        <strong>{% if lang == 'ru' %}Примеры{% else %}Examples{% endif %}:</strong>
+                        {% if result.examples %}
+                            {% if result.examples is string %}
+                                <div>{{ result.examples }}</div>
+                            {% else %}
+                                <ul class="mb-0 ps-3">
+                                    {% for ex in result.examples %}
+                                        <li><em>{{ ex }}</em></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </div>
+                    <div>
+                        <strong>{% if lang == 'ru' %}Синонимы{% else %}Synonyms{% endif %}:</strong>
+                        {{ result.synonyms or '—' }}
+                    </div>
+                {% else %}
+                    <div>{% if lang == 'ru' %}Категория{% else %}Category{% endif %}:</div>
+                    <div>{% if lang == 'ru' %}Дословный перевод{% else %}Literal translation{% endif %}:</div>
+                    <div>{% if lang == 'ru' %}Переносный перевод{% else %}Figurative translation{% endif %}:</div>
+                    <div>{% if lang == 'ru' %}Происхождение{% else %}Origin{% endif %}:</div>
+                    <div>{% if lang == 'ru' %}Примеры{% else %}Examples{% endif %}:</div>
+                    <div>{% if lang == 'ru' %}Синонимы{% else %}Synonyms{% endif %}:</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

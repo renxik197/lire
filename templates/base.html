@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ t.site_title }} — {{ t.tagline }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --lire-bg: #f4f7fb;
+            --lire-card: #ffffff;
+            --lire-primary: #14b8a6;
+            --lire-primary-dark: #0d9488;
+            --lire-text: #1e293b;
+            --lire-muted: #64748b;
+            --lire-border: #e2e8f0;
+        }
+        body {
+            background: var(--lire-bg);
+            color: var(--lire-text);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+        }
+        .navbar-lire {
+            background: #fff;
+            border-bottom: 1px solid var(--lire-border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            padding: 0.75rem 0;
+        }
+        .brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--lire-primary) !important;
+            text-decoration: none;
+        }
+        .nav-link-lire {
+            color: var(--lire-muted) !important;
+            font-weight: 500;
+            padding: 0.4rem 0.85rem !important;
+            border-radius: 8px;
+        }
+        .nav-link-lire:hover {
+            color: var(--lire-primary) !important;
+            background: rgba(20, 184, 166, 0.08);
+        }
+        .lang-btn {
+            border: 1px solid var(--lire-border);
+            background: #fff;
+            color: var(--lire-muted);
+            border-radius: 8px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .lang-btn.active {
+            background: var(--lire-primary);
+            color: #fff;
+            border-color: var(--lire-primary);
+        }
+        .card-lire {
+            background: var(--lire-card);
+            border: 1px solid var(--lire-border);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .card-lire:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .btn-lire {
+            background: var(--lire-primary);
+            border: none;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 0.55rem 1.25rem;
+        }
+        .btn-lire:hover { background: var(--lire-primary-dark); color: #fff; }
+        .btn-outline-lire {
+            border: 1.5px solid var(--lire-primary);
+            color: var(--lire-primary);
+            background: transparent;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .btn-outline-lire:hover { background: var(--lire-primary); color: #fff; }
+        .form-control, .form-select {
+            border-radius: 10px;
+            border-color: var(--lire-border);
+            padding: 0.65rem 1rem;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--lire-primary);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+        }
+        .badge-lire {
+            background: rgba(20, 184, 166, 0.12);
+            color: var(--lire-primary-dark);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.35em 0.7em;
+        }
+        .hero-title {
+            font-weight: 800;
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+        }
+        .hero-sub { color: var(--lire-muted); font-size: 1.1rem; }
+        .module-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            background: rgba(20, 184, 166, 0.12);
+            color: var(--lire-primary);
+            margin-bottom: 1rem;
+        }
+        a.idiom-link {
+            color: var(--lire-text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a.idiom-link:hover { color: var(--lire-primary); }
+        .footer-mini {
+            color: var(--lire-muted);
+            font-size: 0.85rem;
+            padding: 2rem 0 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-lire">
+    <div class="container">
+        <a class="brand" href="/">{{ t.site_title }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+            <ul class="navbar-nav mx-auto gap-1">
+                <li class="nav-item"><a class="nav-link nav-link-lire" href="/dictionary">{{ t.dictionary }}</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lire" href="/translator">{{ t.translator }}</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lire" href="/memory">{{ t.cards }}</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-lire" href="/texts">{{ t.texts }}</a></li>
+            </ul>
+            <div class="d-flex gap-2 align-items-center">
+                <a href="/set_lang/ru" class="lang-btn {% if lang == 'ru' %}active{% endif %}">RU</a>
+                <a href="/set_lang/en" class="lang-btn {% if lang == 'en' %}active{% endif %}">EN</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-4">
+    {% block content %}{% endblock %}
+</main>
+
+<div class="footer-mini">LiRe — Learning Idioms Right Easily</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
