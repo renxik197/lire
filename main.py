@@ -367,7 +367,7 @@ def texts():
         {
             "title_ru": "Используй сайт по кругу",
             "title_en": "Use the site in a loop",
-            "text_ru": "Схема простая: нашли идиому в словаре → посмотрели примеры → проверилт себя в карточках Memory.",
+            "text_ru": "Схема простая: нашли идиому в словаре → посмотрели примеры → проверили себя в карточках Memory.",
             "text_en": "A simple loop: find an idiom in the dictionary → look at examples → check yourself in Memory cards."
         },
     ]
